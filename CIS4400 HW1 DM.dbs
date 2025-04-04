@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="CIS 4400 HW1" database="LogicalDesign" id="LogicalDesign-2686" >
+	<comment><![CDATA[NYC Real Estate Datawarehouse]]></comment>
+	<schema name="CIS 4400 HW1" >
+		<table name="dim_buyer" prior="dim_party" >
+			<column name="buyer_id" prior="party_id" type="INT" jt="4" mandatory="y" />
+			<column name="buyer_1_name" prior="buyer_name" type="VARCHAR" length="1024" jt="12" />
+			<column name="buyer_1_state" prior="buyer_state" type="ENUM" jt="12" />
+			<column name="buyer_2_state" type="ENUM" jt="12" />
+			<column name="buyer_2_name" type="VARCHAR" length="1024" jt="12" />
+			<index name="pk_dim_party" unique="PRIMARY_KEY" >
+				<column name="buyer_id" />
+			</index>
+		</table>
+		<table name="dim_date" prior="Entity" >
+			<column name="date_id" type="INT" jt="4" mandatory="y" />
+			<column name="year_number" type="INT" jt="4" />
+			<column name="quarter_number" type="INT" jt="4" />
+			<column name="month_number" type="INT" jt="4" />
+			<column name="day_number" type="INT" jt="4" />
+			<column name="hour_number" type="INT" jt="4" />
+			<column name="week_of_month" type="INT" jt="4" />
+			<column name="week_of_year" type="INT" jt="4" />
+			<column name="holiday" type="BOOLEAN" jt="-7" />
+			<column name="weekend" type="BOOLEAN" jt="-7" />
+			<column name="month_name" type="VARCHAR" length="25" jt="12" />
+			<column name="day_name" type="VARCHAR" length="25" jt="12" />
+			<column name="sale_datetime" type="DATETIME" jt="93" />
+			<column name="deed_date" type="DATETIME" jt="93" />
+			<column name="bldg_assmnt_date" type="DATETIME" jt="93" />
+			<column name="land_assmnt_date" type="DATETIME" jt="93" />
+			<index name="pk_dim_date" unique="PRIMARY_KEY" >
+				<column name="date_id" />
+			</index>
+			<fk name="fk_dim_date_fact_price" to_schema="CIS 4400 HW1" to_table="fact_price" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="date_id" pk="date_id" />
+			</fk>
+			<fk name="fk_dim_date_fact_price_0" to_schema="CIS 4400 HW1" to_table="fact_price" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="sale_datetime" pk="sale_datetime" />
+			</fk>
+			<fk name="fk_dim_date_fact_price_1" to_schema="CIS 4400 HW1" to_table="fact_price" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="deed_date" pk="deed_date" />
+			</fk>
+			<fk name="fk_dim_date_fact_price_2" to_schema="CIS 4400 HW1" to_table="fact_price" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="bldg_assmnt_date" pk="bldg_assmnt_date" />
+			</fk>
+			<fk name="fk_dim_date_fact_price_3" to_schema="CIS 4400 HW1" to_table="fact_price" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="land_assmnt_date" pk="land_assmnt_date" />
+			</fk>
+		</table>
+		<table name="dim_location" prior="Entity" >
+			<column name="location_id" type="INT" jt="4" mandatory="y" />
+			<column name="street_address" type="VARCHAR" length="1024" jt="12" />
+			<column name="city" type="VARCHAR" length="255" jt="12" />
+			<column name="county" type="VARCHAR" length="255" jt="12" />
+			<column name="township" type="VARCHAR" length="255" jt="12" />
+			<column name="state" type="CHAR" length="2" jt="1" />
+			<column name="zipcode" type="CHAR" length="5" jt="1" />
+			<column name="latitude" type="DOUBLE" jt="8" />
+			<column name="longitude" type="DOUBLE" jt="8" />
+			<index name="pk_dim_location" unique="PRIMARY_KEY" >
+				<column name="location_id" />
+			</index>
+		</table>
+		<table name="dim_property" prior="Entity" >
+			<column name="property_id" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="property_type" type="VARCHAR" length="255" jt="12" />
+			<column name="year_built" type="INT" jt="4" />
+			<column name="num_units" type="INT" jt="4" />
+			<column name="num_stories" type="INT" jt="4" />
+			<column name="num_beds" type="DOUBLE" jt="8" />
+			<column name="num_baths" type="DOUBLE" jt="8" />
+			<column name="bldg_area_sqft" prior="Bldg_area_sqft" type="INT" jt="4" />
+			<column name="land_area_acres" prior="land_area_sqft" type="INT" jt="4" />
+			<column name="land_area_sqft" type="INT" jt="4" />
+			<column name="land_type" type="VARCHAR" length="500" jt="12" />
+			<column name="bldg_assmnt_value" type="BIGINT" jt="-5" />
+			<column name="land_assmnt_value" type="BIGINT" jt="-5" />
+			<column name="total_assmnt_value" type="BIGINT" jt="-5" />
+			<column name="bldg_apprais_value" type="BIGINT" jt="-5" />
+			<column name="land_apprais_value" type="BIGINT" jt="-5" />
+			<column name="total_apprais_value" type="BIGINT" jt="-5" />
+			<index name="pk_dim_property" unique="PRIMARY_KEY" >
+				<column name="property_id" />
+			</index>
+			<fk name="fk_dim_property_fact_price" to_schema="CIS 4400 HW1" to_table="fact_price" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="property_id" pk="property_id" />
+			</fk>
+		</table>
+		<table name="dim_seller_name" prior="seller_name" >
+			<column name="seller_id" type="INT" jt="4" mandatory="y" />
+			<column name="seller_1_name" prior="seller_name" type="VARCHAR" length="1024" jt="12" />
+			<column name="seller_1_state" prior="seller_state" type="ENUM" jt="12" />
+			<column name="seller_2_name" type="VARCHAR" length="1024" jt="12" />
+			<column name="seller_2_state" type="ENUM" jt="12" />
+			<index name="pk_seller_name" unique="PRIMARY_KEY" >
+				<column name="seller_id" />
+			</index>
+		</table>
+		<table name="dim_transaction_details" prior="transaction_details" >
+			<column name="transaction_id" type="INT" jt="4" mandatory="y" />
+			<column name="transfer_deed_type" type="VARCHAR" length="100" jt="12" />
+			<column name="source_url" type="VARCHAR" length="2048" jt="12" />
+			<column name="book" type="INT" jt="4" />
+			<column name="page" type="INT" jt="4" />
+			<index name="pk_transaction_details" unique="PRIMARY_KEY" >
+				<column name="transaction_id" />
+			</index>
+		</table>
+		<table name="fact_price" prior="fact_" >
+			<column name="sale_id" prior="fact_id" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="sale_price" type="BIGINT" jt="-5" />
+			<column name="buyer_id" type="INT" jt="4" mandatory="y" />
+			<column name="seller_id" type="INT" jt="4" mandatory="y" />
+			<column name="transaction_id" type="INT" jt="4" mandatory="y" />
+			<column name="location_id" type="INT" jt="4" mandatory="y" />
+			<column name="date_id" type="INT" jt="4" />
+			<column name="property_id" type="INT" jt="4" />
+			<column name="sale_datetime" type="DATETIME" jt="93" />
+			<column name="deed_date" type="DATETIME" jt="93" />
+			<column name="bldg_assmnt_date" type="DATETIME" jt="93" />
+			<column name="land_assmnt_date" type="DATETIME" jt="93" />
+			<index name="pk_fact_price" unique="PRIMARY_KEY" >
+				<column name="sale_id" />
+			</index>
+			<index name="unq_property_id" unique="UNIQUE_INDEX" >
+				<column name="property_id" />
+			</index>
+			<index name="unq_date_id" unique="UNIQUE_INDEX" >
+				<column name="date_id" />
+			</index>
+			<index name="unq_sale_datetime" unique="UNIQUE_INDEX" >
+				<column name="sale_datetime" />
+			</index>
+			<index name="unq_deed_date" unique="UNIQUE_INDEX" >
+				<column name="deed_date" />
+			</index>
+			<index name="unq_bldg_assmnt_date" unique="UNIQUE_INDEX" >
+				<column name="bldg_assmnt_date" />
+			</index>
+			<index name="unq_land_assmnt_date" unique="UNIQUE_INDEX" >
+				<column name="land_assmnt_date" />
+			</index>
+			<fk name="fk_fact_price_dim_buyer" to_schema="CIS 4400 HW1" to_table="dim_buyer" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="buyer_id" pk="buyer_id" />
+			</fk>
+			<fk name="fk_fact_price_dim_seller_name" to_schema="CIS 4400 HW1" to_table="dim_seller_name" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="seller_id" pk="seller_id" />
+			</fk>
+			<fk name="fk_fact_price_dim_transaction_details" to_schema="CIS 4400 HW1" to_table="dim_transaction_details" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="transaction_id" pk="transaction_id" />
+			</fk>
+			<fk name="fk_fact_price_dim_location" to_schema="CIS 4400 HW1" to_table="dim_location" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="location_id" pk="location_id" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Diagram" id="Diagram-ddd" show_relation="columns" >
+		<entity schema="CIS 4400 HW1" name="dim_buyer" color="C1D8EE" x="57" y="190" />
+		<entity schema="CIS 4400 HW1" name="dim_date" color="C1D8EE" x="551" y="475" />
+		<entity schema="CIS 4400 HW1" name="dim_location" color="C1D8EE" x="57" y="494" />
+		<entity schema="CIS 4400 HW1" name="dim_property" color="C1D8EE" x="304" y="646" />
+		<entity schema="CIS 4400 HW1" name="dim_seller_name" color="C1D8EE" x="247" y="57" />
+		<entity schema="CIS 4400 HW1" name="dim_transaction_details" color="C1D8EE" x="475" y="57" />
+		<entity schema="CIS 4400 HW1" name="fact_price" color="C1D8EE" x="304" y="285" />
+	</layout>
+</project>
