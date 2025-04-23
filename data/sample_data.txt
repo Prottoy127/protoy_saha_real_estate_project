@@ -1,0 +1,4 @@
+Sample Data Found on DoltHub
+https://www.dolthub.com/repositories/dolthub/us-housing-prices-v2
+
+The data used for the project is on Azure cloud storage which will be used via a connection string for the project.
