@@ -1,8 +1,8 @@
-# New York Real Estate Housing Prices
+# New Jersey Real Estate Housing Prices
 
 # A. Problem Context
 
-Building a Data Warehouse for New York State housing prices. Helping buyers with home purchase decision analysis. 
+Building a Data Warehouse for New Jersey State housing prices. Helping buyers with home purchase decision analysis. 
 Adiitionally finding out cost of living, housing price, crime, and school rating.
 
 # B. Requirements
