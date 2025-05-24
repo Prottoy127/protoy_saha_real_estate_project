@@ -30,8 +30,9 @@ Adiitionally finding out cost of living, housing price, crime, and school rating
 # C. Architecture
 ## 1. Information Architecture
 * The data is streamed via a connection string from Azure cloud storage to my Azure cloud storage. 
-* My initial cloud storage will act as temporary storage. Thereafter, it will go through ELT process and put into the data warehouse. 
-* From there, it will go to the BI tool for data visualization.
+* My initial cloud storage will act as temporary storage. Thereafter, it went to my Snowflake datawarehouse.
+* Then Dbt was used to complete the ELT process and the data was put into the datawarehouse. 
+* From there, it will go to the Tableau tool for data visualization.
     * Information Architecture Diagram
 
 ## 2. Data Architecture
@@ -48,7 +49,9 @@ Adiitionally finding out cost of living, housing price, crime, and school rating
 
 ## 4. Product Architecture
 * Provide an overview of the product's overall structure.
+   * The Snowflake datawarehouse is a simple warehouse to house NJ real estate data.
 * Include any major components and how they interact.
+   * The major component of the project is how Tableau is connected to Snowflake and its efficient data streaming capabilities that make real-time analytics possible.
 
 # D. Modeling
 * The dimensional modeling consists of 7 tables. 
@@ -68,6 +71,7 @@ Adiitionally finding out cost of living, housing price, crime, and school rating
 * Example:
     * Sprint 1: Setup and Data Collection
     * Sprint 2: Data Processing and Model Building
+    * Spring 3: Tableau Data Visualization
 * Metadata Management
     * Data Dictionary
     * Mapping Sources and Target Systems
@@ -76,19 +80,22 @@ Adiitionally finding out cost of living, housing price, crime, and school rating
         * Function 2
         * Function 3
     * ELT Extract Load Transform
-    * Tools
+    * Tools: Dbt, Tableau, Snowflake, Azure
 
 # F. Visualization
 #### Provide details of the visualizations created for the project.
 * Include charts, graphs, and any other visual representation of the data.
     * Visualization Example
-    * Four different visualizations were created to understand trends and historical real estate trends in NJ. 
+    * Four different visualizations were created to understand trends and historical real estate trends in NJ.
+       * Sale Price by Building Year Built
+       * Total Sale Prices by County Heatmap
+       * Total Sale Prices by County
+       * Total Sale Prices by Property Type
 * Mention any libraries or tools used for visualization (e.g., Matplotlib, Power BI).
 *    None
 # G. Insights
 #### Highlight any key insights gained from the project.
 * Provide an overview of what was learned or discovered through data analysis.
-* Example:
     * High correlation between colonial property type and sale prices in NJ.
     * Significant opportunity for real estate investment in key zipcodes yet to be explored.
 # H. Conclusion
@@ -101,6 +108,7 @@ Adiitionally finding out cost of living, housing price, crime, and school rating
     * Future work may include expanding the solution to new areas such as income, school districts, zoning, etc.
 
 # I. References
+   ### NONE
 * Provide a list of all references used in the project, formatted according to MLA style.
 1. Author Last Name, First Name. Title of Book. Publisher, Year.
 2. "Title of Article." Name of Journal, vol. 1, no. 1, Year, pp. 1-10.
