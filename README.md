@@ -7,8 +7,8 @@ Adiitionally finding out cost of living, housing price, crime, and school rating
 
 # B. Requirements
 ## 1. Business Requirements
-* Predict Real Estate Investment ROI: Use the NYC data to predict where it would be the best to invest in to get the most out of the investment.
-* Predict Housing Prices: Create a model to predict property prices based on property related attributes such as zip code, square footage, etc.
+* Predict Real Estate Investment ROI: Use the NJ data to predict where it would be the best to invest in to get the most out of the investment.
+* Identify Property Types: Identify property types with highest sale prices based on property related attributes such as zip code, square footage, etc.
 * Find Market Trends: Analyze trends in specific regions that can help drive real estate investment.
 
 ## 2. Functional Requirements
@@ -19,13 +19,13 @@ Adiitionally finding out cost of living, housing price, crime, and school rating
 * Data Visualization: Build dashboards to allow users to interact with the data to their liking and task requirements to explore trends or filter the data.
 
 ## 3. Data Requirements
-* NYC Real Estate Data
+* NJ Real Estate Data
 * Source: 
 * Connection string via Azure cloud storage.
 * Housing sale price and listing data
 * Crime data. Optional
 * School rating data. Optional
-* Cost of living data MIT Living Wages
+* Cost of living data MIT Living Wages. Optional
 
 # C. Architecture
 ## 1. Information Architecture
@@ -40,8 +40,9 @@ Adiitionally finding out cost of living, housing price, crime, and school rating
 * The data will be stored in a top-down process. Where all of the data will be kept in a data warehouse and specific data as required for the business requirements will be stored in data marts.
 
 ## 3. Technical Architecture
-* Python for data analysis
+* Python for data extraction
 * Azure for cloud computing
+* Snowflake for datawarehousing
 * DbSchema to create the data modeling
 * Tableau for data visiualization
 
@@ -74,29 +75,30 @@ Adiitionally finding out cost of living, housing price, crime, and school rating
         * Function 1
         * Function 2
         * Function 3
-    * ETL Extract Load Transform
-    * ELT Extract Transform Load
+    * ELT Extract Load Transform
     * Tools
 
 # F. Visualization
 #### Provide details of the visualizations created for the project.
 * Include charts, graphs, and any other visual representation of the data.
     * Visualization Example
+    * Four different visualizations were created to understand trends and historical real estate trends in NJ. 
 * Mention any libraries or tools used for visualization (e.g., Matplotlib, Power BI).
+*    None
 # G. Insights
 #### Highlight any key insights gained from the project.
 * Provide an overview of what was learned or discovered through data analysis.
 * Example:
-    * High correlation between customer satisfaction and response time.
-    * Significant opportunity for cost reduction in supply chain operations.
+    * High correlation between colonial property type and sale prices in NJ.
+    * Significant opportunity for real estate investment in key zipcodes yet to be explored.
 # H. Conclusion
 #### Summarize the outcomes of the project and any potential next steps.
+* The project's goal was to explore real estate but not just be a mere data analyst. I hoped to learn how to interact with location data in a datawarehouse, I have done that. Additionally, I always wanted to work with real estate data and see trends and explore questions that I always stumble upon. For example, I always wondered if a certain property type or a specific zipcode would be more active in terms of sale prices. I was happy to find answer to those questions. Many zipcodes in NJ near NYC have high sale prices. Which makes sense as a lot of people work in the Manhattan and live in NJ.
 
 * What was achieved?
+* The project helped to ease stakeholder decision making based on clear visualizations.
 * How can the results be used moving forward?
-* Example:
-    * The project successfully reduced costs by 20% through process automation.
-    * Future work may include expanding the solution to new departments.
+    * Future work may include expanding the solution to new areas such as income, school districts, zoning, etc.
 
 # I. References
 * Provide a list of all references used in the project, formatted according to MLA style.
